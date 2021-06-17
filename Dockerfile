@@ -1,4 +1,4 @@
-FROM ubuntu:disco AS builder
+FROM pataquets/ubuntu:focal AS builder
 
 RUN \
   apt-get update && \
@@ -6,6 +6,7 @@ RUN \
     apt-get -y install \
       autoconf \
       build-essential \
+      cmake \
       libgetdns-dev \
       libyaml-dev \
   && \
@@ -15,13 +16,10 @@ RUN \
 COPY . /usr/src/stubby/
 WORKDIR /usr/src/stubby/
 
-RUN \
-  autoreconf -vfi && \
-  ./configure CFLAGS="-I/usr/local/include" LDFLAGS="-L/usr/local/lib" && \
-  make && \
-  make install
+RUN cmake .
+RUN make
 
-FROM ubuntu:disco
+FROM pataquets/ubuntu:focal
 
 RUN \
   apt-get update && \
