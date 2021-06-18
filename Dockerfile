@@ -8,6 +8,7 @@ RUN \
       build-essential \
       cmake \
       libgetdns-dev \
+      libssl-dev \
       libyaml-dev \
   && \
   apt-get clean && \
@@ -27,6 +28,7 @@ RUN \
     apt-get -y install \
       libgetdns10 \
       libyaml-0-2 \
+      openssl \
   && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/
