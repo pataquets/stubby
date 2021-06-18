@@ -33,6 +33,6 @@ RUN \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/
 
-COPY --from=builder /usr/local/bin/stubby /usr/local/bin
+COPY --from=builder /usr/src/stubby /usr/local/bin
 
 ENTRYPOINT [ "stubby" ]
